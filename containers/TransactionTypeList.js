@@ -3,6 +3,8 @@ import gql from "graphql-tag"
 import { StyleSheet } from 'react-native'
 import { Container, Spinner, Segment, Button, Content, Text, ListItem } from 'native-base'
 import { graphql, ApolloProvider } from 'react-apollo';
+import HeaderC from '../components/common/Header'
+import FooterC from '../components/common/Footer'
 
 const TransactionTypeList =
   ({ data: { loading, transactionTypes } }) => (
@@ -12,6 +14,7 @@ const TransactionTypeList =
       </Container>
       :
       <Container>
+        <HeaderC title='Trans. Types' />
         <Segment>
           <Button first>
             <Text>INCOME</Text>
@@ -32,6 +35,7 @@ const TransactionTypeList =
             </ListItem>
           ))}
         </Content>
+        <FooterC />
       </Container>
   )
 

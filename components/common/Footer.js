@@ -1,28 +1,30 @@
-import React, { Component } from 'react';
-import { Footer, FooterTab, Button, Icon, Text } from 'native-base';
-export default class FooterTabsIconTextExample extends Component {
-  render() {
-    return (
-      <Footer>
-        <FooterTab>
-          <Button vertical>
-            <Icon name="apps" />
-            <Text>Apps</Text>
-          </Button>
-          <Button vertical>
-            <Icon name="camera" />
-            <Text>Camera</Text>
-          </Button>
-          <Button vertical>
-            <Icon active name="navigate" />
-            <Text>Navigate</Text>
-          </Button>
-          <Button vertical>
-            <Icon name="person" />
-            <Text>Contact</Text>
-          </Button>
-        </FooterTab>
-      </Footer>
-    );
-  }
-}
+import React, { Component } from 'react'
+import { Footer, FooterTab, Button, Icon, Text } from 'native-base'
+import { withRouter } from 'react-router-native'
+const FooterC = ({ history, match }) => (
+  <Footer>
+    <FooterTab>
+      <Button vertical
+        onPress={() => history.push("/")}
+        active={match.path === '/'}>
+        <Icon name="contact" />
+        <Text>Login</Text>
+      </Button>
+      <Button vertical
+        onPress={() => history.push("/transactiontype")}
+        active={match.path === '/transactiontype'}>
+        <Icon name="pulse" />
+        <Text>Trans.</Text>
+      </Button>
+      <Button vertical>
+        <Icon name="document" />
+        <Text>Event</Text>
+      </Button>
+      <Button vertical>
+        <Icon name="build" />
+        <Text>Setting</Text>
+      </Button>
+    </FooterTab>
+  </Footer>
+)
+export default withRouter(FooterC)
