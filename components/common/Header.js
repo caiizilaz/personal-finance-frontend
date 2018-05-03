@@ -1,10 +1,20 @@
 import React from 'react'
-import { Header, Left, Right, Button, Icon, Title } from 'native-base'
-const HeaderC = ({ title }) => (
+import { Header, Left, Body, Right, Button, Icon, Title } from 'native-base'
+import { withRouter } from 'react-router-native'
+
+const HeaderC = ({ title, history }) => (
   <Header>
-    <Left>
+    {title === 'LOGIN' || title === 'REGISTER' ?
+      <Left>
+        <Button transparent
+          onPress={() => history.push("/")}>
+          <Icon name='arrow-back' />
+        </Button>
+      </Left> : null
+    }
+    <Body>
       <Title>{title}</Title>
-    </Left>
+    </Body>
     <Right>
       <Button transparent>
         <Icon name='search' />
@@ -19,4 +29,4 @@ const HeaderC = ({ title }) => (
   </Header>
 )
 
-export default HeaderC
+export default withRouter(HeaderC)

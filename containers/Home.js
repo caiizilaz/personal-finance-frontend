@@ -1,12 +1,11 @@
 import React from 'react'
-import { Container, Content, Text, Button, H2, Card, CardItem, Body } from 'native-base'
-import { StyleSheet } from 'react-native'
+import { Container, Content, Text, Button, Card, CardItem, Body, Icon } from 'native-base'
 import HeaderC from '../components/common/Header'
 import FooterC from '../components/common/Footer'
 
-const Home = ({ }) => (
+const Home = ({ history }) => (
   <Container>
-    <HeaderC title='Home'/>
+    <HeaderC title='Home' />
     <Content padder>
       <Card>
         <CardItem header bordered>
@@ -16,14 +15,18 @@ const Home = ({ }) => (
         </CardItem>
         <CardItem bordered>
           <Body>
-            <Button full>
+            <Button full success
+              onPress={() => history.push("/login")}>
+              <Icon name="log-in" />
               <Text>LogIn</Text>
             </Button>
           </Body>
         </CardItem>
         <CardItem bordered>
           <Body>
-            <Button full info>
+            <Button full info
+              onPress={() => history.push("/register")}>
+              <Icon name="person-add" />
               <Text>Sign Up</Text>
             </Button>
           </Body>
@@ -33,9 +36,5 @@ const Home = ({ }) => (
     <FooterC />
   </Container>
 )
-
-const styles = StyleSheet.create({
-
-})
 
 export default Home

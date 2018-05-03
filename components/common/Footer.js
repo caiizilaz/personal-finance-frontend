@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Footer, FooterTab, Button, Icon, Text } from 'native-base'
 import { withRouter } from 'react-router-native'
 const FooterC = ({ history, match }) => (
@@ -16,11 +16,15 @@ const FooterC = ({ history, match }) => (
         <Icon name="pulse" />
         <Text>Trans.</Text>
       </Button>
-      <Button vertical>
+      <Button vertical
+        onPress={() => history.push("/event")}
+        active={match.path === '/event'}>
         <Icon name="document" />
         <Text>Event</Text>
       </Button>
-      <Button vertical>
+      <Button vertical
+        onPress={() => history.push("/setting")}
+        active={match.path === '/setting'}>
         <Icon name="build" />
         <Text>Setting</Text>
       </Button>

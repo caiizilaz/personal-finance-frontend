@@ -95,7 +95,7 @@ export default {
   checkboxTickColor: "#fff",
 
   // Color
-  brandPrimary: "#3F51B5",
+  brandPrimary: "#DB0A5B",
   brandInfo: "#62B1F6",
   brandSuccess: "#5cb85c",
   brandDanger: "#d9534f",
@@ -118,27 +118,27 @@ export default {
 
   // Footer
   footerHeight: isIphoneX ? 89 : 55,
-  footerDefaultBg: "#3F51B5",
+  footerDefaultBg: "#DB0A5B",
   footerPaddingBottom: isIphoneX ? 34 : 0,
 
   // FooterTab
-  tabBarTextColor: "#bfc6ea",
+  tabBarTextColor: "#DADFE1",
   tabBarTextSize: 11,
   activeTab: "#fff",
   sTabBarActiveTextColor: "#007aff",
   tabBarActiveTextColor: "#fff",
-  tabActiveBgColor: "#3F51B5",
+  tabActiveBgColor: "#DB0A5B",
 
   // Header
   toolbarBtnColor: "#fff",
-  toolbarDefaultBg: "#3F51B5",
+  toolbarDefaultBg: "#DB0A5B",
   toolbarHeight: 56,
   toolbarSearchIconSize: 23,
   toolbarInputColor: "#fff",
   searchBarHeight: platform === "ios" ? 30 : 40,
   searchBarInputHeight: platform === "ios" ? 40 : 50,
   toolbarBtnTextColor: "#fff",
-  toolbarDefaultBorder: "#3F51B5",
+  toolbarDefaultBorder: "#DB0A5B",
   iosStatusbar: "light-content",
   get statusBarColor() {
     return color(this.toolbarDefaultBg)
@@ -191,26 +191,26 @@ export default {
 
   // Radio Button
   radioBtnSize: 23,
-  radioSelectedColorAndroid: "#3F51B5",
+  radioSelectedColorAndroid: "#DB0A5B",
   radioBtnLineHeight: 24,
   get radioColor() {
     return this.brandPrimary;
   },
 
   // Segment
-  segmentBackgroundColor: "#3F51B5",
+  segmentBackgroundColor: "#DB0A5B",
   segmentActiveBackgroundColor: "#fff",
   segmentTextColor: "#fff",
-  segmentActiveTextColor: "#3F51B5",
+  segmentActiveTextColor: "#DB0A5B",
   segmentBorderColor: "#fff",
-  segmentBorderColorMain: "#3F51B5",
+  segmentBorderColorMain: "#DB0A5B",
 
   // Spinner
   defaultSpinnerColor: "#45D56E",
   inverseSpinnerColor: "#1A191B",
 
   // Tab
-  tabDefaultBg: "#3F51B5",
+  tabDefaultBg: "#DB0A5B",
   topTabBarTextColor: "#b3c7f9",
   topTabBarActiveTextColor: "#fff",
   topTabBarBorderColor: "#fff",
