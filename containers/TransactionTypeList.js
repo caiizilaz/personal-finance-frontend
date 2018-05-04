@@ -1,18 +1,16 @@
 import React from 'react'
 import gql from "graphql-tag"
 import { StyleSheet } from 'react-native'
-import { Container, Spinner, Segment, Button, Content, Text, ListItem } from 'native-base'
+import { Container, Segment, Button, Content, Text, ListItem } from 'native-base'
 import { graphql, ApolloProvider } from 'react-apollo';
 import HeaderC from '../components/common/Header'
 import FooterC from '../components/common/Footer'
+import Loading from '../components/common/Loading'
 
 const TransactionTypeList =
   ({ data: { loading, transactionTypes } }) => (
-    loading ?
-      <Container style={styles.container}>
-        <Spinner color='blue' />
-      </Container>
-      :
+    loading ? <Loading /> :
+      loading === false &&
       <Container>
         <HeaderC title='Trans. Types' />
         <Segment>
@@ -38,17 +36,6 @@ const TransactionTypeList =
         <FooterC />
       </Container>
   )
-
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
 
 const transactionTypeQuery = gql`
   query{
