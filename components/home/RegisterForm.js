@@ -1,14 +1,10 @@
 import React from 'react'
 import { Container, Content, Form, Item, Input, Label, Button, Icon, Text } from 'native-base';
 
-import HeaderC from '../common/Header'
-import FooterC from '../common/Footer'
-
 class RegisterForm extends React.Component {
   render() {
     return (
       <Container>
-        <HeaderC title='REGISTER' />
         <Content padder>
           <Form>
             <Item floatingLabel>
@@ -29,7 +25,6 @@ class RegisterForm extends React.Component {
             <Text>Sign Up</Text>
           </Button>
         </Content>
-        <FooterC />
       </Container>
     )
   }

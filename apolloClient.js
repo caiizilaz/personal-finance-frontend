@@ -1,20 +1,23 @@
-import { ApolloClient, InMemoryCache } from 'apollo-client-preset'
+import { ApolloClient } from 'apollo-client'
+import { InMemoryCache } from 'apollo-cache-inmemory'
 import { createHttpLink } from 'apollo-link-http'
 import { setContext } from 'apollo-link-context'
-import store from './store'
+import { getItem } from './clientStore'
 
 const httpLink = createHttpLink({
-  uri: 'http://192.168.10.104:8080/graphql',
+  uri: 'http://192.168.10.103:8080/graphql',
 })
 
 const authLink = setContext((_, { headers }) => {
-  const token = AsyncStorage.getItem('token')
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : "",
+  return getItem('token').then((value) => {
+    return {
+      headers: {
+        ...headers,
+        authorization: value ? `Bearer ${value}` : "",
+      }
     }
-  }
+  })
+
 })
 
 export default new ApolloClient({

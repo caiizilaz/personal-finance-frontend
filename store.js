@@ -1,12 +1,12 @@
-import { combineReducers, createStore } from 'redux'
-import loginReducer from './reducers/login'
-import registerReducer from './reducers/register'
-import userReducer from './reducers/user'
+import { combineReducers, createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
+import authReducer from './reducers/auth'
 
 const reducers = combineReducers({
-  login: loginReducer,
-  register: registerReducer,
-  user: userReducer,
+  auth: authReducer,
 })
 
-export default createStore(reducers)
+export default createStore(
+  reducers,
+  applyMiddleware(thunk)
+)

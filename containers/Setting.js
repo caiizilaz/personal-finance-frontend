@@ -1,16 +1,38 @@
 import React from 'react'
-import { Container, Text, Content } from 'native-base'
-import HeaderC from '../components/common/Header'
-import FooterC from '../components/common/Footer'
+import { Container, Text, Content, Button } from 'native-base'
+import { connect } from 'react-redux'
+import { logout } from '../actions/auth'
+import { removeItem } from '../clientStore'
 
-const Setting = ({ }) => (
-  <Container>
-    <HeaderC title='Setting' />
-    <Content padder>
-      <Text>Setting's Page</Text>
-    </Content>
-    <FooterC />
-  </Container>
-)
+class Setting extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  _logOut = async () => {
+    await removeItem('token')
+    this.props.dispatchLogout()
+  }
+  render() {
+    return (
+      <Container>
+        <Content padder>
+          <Text>Setting's Page</Text>
+          <Button
+            onPress={this._logOut}>
+            <Text>Logout</Text>
+          </Button>
+        </Content>
+      </Container>
+    )
+  }
+}
 
-export default Setting
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+
+const mapDispatchToProps = {
+  dispatchLogout: () => logout()
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Setting)

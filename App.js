@@ -1,14 +1,14 @@
 import React from 'react'
 import { ApolloProvider } from 'react-apollo'
-import { View, StyleProvider } from 'native-base'
-import { AsyncStorage } from 'react-native'
+import { StyleProvider } from 'native-base'
+import Root from './root'
 import { Provider } from 'react-redux'
-
-import apolloClient from './apolloClient'
 import store from './store'
-import Router from './router'
+import apolloClient from './apolloClient'
 import getTheme from './native-base-theme/components'
 import material from './native-base-theme/variables/material'
+
+
 
 export default class App extends React.Component {
   constructor(...args) {
@@ -32,7 +32,7 @@ export default class App extends React.Component {
         <StyleProvider style={getTheme(material)}>
           <Provider store={store}>
             <ApolloProvider client={apolloClient}>
-              <Router />
+              <Root />
             </ApolloProvider>
           </Provider>
         </StyleProvider>
