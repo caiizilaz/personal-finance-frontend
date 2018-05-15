@@ -1,34 +1,23 @@
 import React from 'react'
 import { Footer, FooterTab, Button, Icon, Text } from 'native-base'
-import { withRouter } from 'react-router-native'
-const FooterC = ({ history, match }) => (
+import { Actions } from 'react-native-router-flux';
+
+const FooterC = () => (
   <Footer>
     <FooterTab>
       <Button vertical
-        onPress={() => history.push("/")}
-        active={match.path === '/'}>
-        <Icon name="contact" />
-        <Text>Login</Text>
-      </Button>
-      <Button vertical
-        onPress={() => history.push("/transactiontype")}
-        active={match.path === '/transactiontype'}>
-        <Icon name="pulse" />
-        <Text>Trans.</Text>
-      </Button>
-      <Button vertical
-        onPress={() => history.push("/event")}
-        active={match.path === '/event'}>
-        <Icon name="document" />
-        <Text>Event</Text>
-      </Button>
-      <Button vertical
-        onPress={() => history.push("/setting")}
-        active={match.path === '/setting'}>
+        onPress={() => Actions.SETTING()}
+        active={Actions.currentScene.replace('_', '') === 'SETTING'}>
         <Icon name="build" />
-        <Text>Setting</Text>
+        <Text>SETTING</Text>
+      </Button>
+      <Button vertical
+        onPress={() => Actions.TRANTYPE()}
+        active={Actions.currentScene.replace('_', '') === 'TRANTYPE'}>
+        <Icon name="pulse" />
+        <Text>TRAN TYPE</Text>
       </Button>
     </FooterTab>
   </Footer>
 )
-export default withRouter(FooterC)
+export default FooterC

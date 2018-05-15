@@ -1,11 +1,12 @@
 import {
   LOGIN,
   LOGOUT,
+  AUTH,
 } from '../actions/auth';
-import { isSignedIn } from '../clientStore'
 
 const initialState = {
   isAuth: false,
+  username: null,
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -13,10 +14,17 @@ export default (state = initialState, { type, payload }) => {
     case LOGIN:
       return {
         isAuth: true,
+        username: payload.username
       };
     case LOGOUT:
       return {
         isAuth: false,
+        username: null
+      };
+    case AUTH:
+      return {
+        isAuth: true,
+        username: payload.username
       };
     default:
       return state;

@@ -1,9 +1,10 @@
 import React from 'react'
 import { ApolloProvider } from 'react-apollo'
 import { StyleProvider } from 'native-base'
-import Root from './root'
 import { Provider } from 'react-redux'
-import store from './store'
+import { PersistGate } from 'redux-persist/integration/react'
+import Root from './root'
+import { store, persistor } from './store'
 import apolloClient from './apolloClient'
 import getTheme from './native-base-theme/components'
 import material from './native-base-theme/variables/material'
@@ -31,9 +32,11 @@ export default class App extends React.Component {
         :
         <StyleProvider style={getTheme(material)}>
           <Provider store={store}>
-            <ApolloProvider client={apolloClient}>
-              <Root />
-            </ApolloProvider>
+            <PersistGate loading={null} persistor={persistor}>
+              <ApolloProvider client={apolloClient}>
+                <Root />
+              </ApolloProvider>
+            </PersistGate>
           </Provider>
         </StyleProvider>
     )

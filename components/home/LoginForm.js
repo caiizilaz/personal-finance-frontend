@@ -7,10 +7,8 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import { connect } from 'react-redux'
 import { login } from '../../actions/auth'
-import { setItem } from '../../clientStore'
 
 class LoginForm extends React.Component {
-
   constructor(props) {
     super(props)
     this.state = {
@@ -28,8 +26,7 @@ class LoginForm extends React.Component {
         variables: { username, password },
       })
     if (token !== null) {
-      await setItem('token', token)
-      this.props.dispatchLogin()
+      this.props.dispatchLogin(token)
     } else {
       this.setState({ error })
     }
@@ -85,7 +82,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  dispatchLogin: () => login()
+  dispatchLogin: (token) => login(token)
 }
 
 

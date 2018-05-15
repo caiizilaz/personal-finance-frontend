@@ -1,35 +1,26 @@
 import React from 'react'
 import { Container, Content, Text, Button, Card, CardItem, Body, Icon } from 'native-base'
-import { getItem } from '../clientStore'
+import { Actions } from 'react-native-router-flux';
 
 export default class Home extends React.Component {
   constructor(props) {
     super(props)
   }
-  componentDidMount() {
-    this._loadInitialState().done
-  }
-  _loadInitialState = async () => {
-    let value = await getItem('token')
-    if (value !== null) {
-      this.props.navigation.navigate('Setting')
-    }
-  }
+
   render() {
-    const { navigation } = this.props
     return (
       <Container>
-        <Content padder>
-          <Card>
+        <Content padder contentContainerStyle={{ flex: 1, justifyContent: 'center', backgroundColor: '#E67E22' }}>
+          <Card style={{ flex: 0, justifyContent: 'center', minHeight: '50%' }}>
             <CardItem header bordered>
-              <Text>Personal Finance</Text>
+              <Text center>Personal Finance</Text>
             </CardItem>
             <CardItem bordered>
             </CardItem>
             <CardItem bordered>
               <Body>
                 <Button full success
-                  onPress={() => navigation.navigate('Login')}>
+                  onPress={() => Actions.LOGIN()}>
                   <Icon name="log-in" />
                   <Text>LogIn</Text>
                 </Button>
@@ -38,7 +29,7 @@ export default class Home extends React.Component {
             <CardItem bordered>
               <Body>
                 <Button full info
-                  onPress={() => navigation.navigate('Register')}>
+                  onPress={() => Actions.REGISTER()}>
                   <Icon name="person-add" />
                   <Text>Sign Up</Text>
                 </Button>

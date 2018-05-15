@@ -1,58 +1,44 @@
 import React from 'react'
 import { Header, Left, Body, Right, Button, Icon, Title, Text } from 'native-base'
-import { withRouter } from 'react-router-native'
-import { getItem, removeItem } from '../../clientStore'
+import { connect } from 'react-redux'
+import { logout } from '../../actions/auth'
+import { Actions } from 'react-native-router-flux'
 
 class HeaderC extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      isAuth: false
-    }
-    this.logOut = this.logOut.bind(this)
   }
 
-  async logOut() {
-    await removeItem('token')
-    const token = await getItem('token')
-    this.setState({ isAuth: !!token })
-    this.props.history.push("/")
-  }
-
-  async componentDidMount() {
-    const token = await getItem('token')
-    this.setState({ isAuth: !!token })
+  _logOut = async () => {
+    this.props.dispatchLogout()
   }
 
   render() {
-    // const { title, history, auth } = this.props
-    const { isAuth } = this.state
+    let { isAuth } = this.props.auth
     return (
       <Header>
-        {/* {title === 'LOGIN' || title === 'REGISTER' ?
-          <Left>
-            <Button transparent
-              onPress={() => history.push("/")}>
-              <Icon name='arrow-back' />
-            </Button>
-          </Left> : null
+        {
+          Actions.currentScene === 'LOGIN' || Actions.currentScene === 'REGISTER' ?
+            <Left>
+              <Button transparent
+                onPress={() => Actions.HOME()}>
+                <Icon name='arrow-back' />
+              </Button>
+            </Left> : null
         }
         <Body>
-          <Title>{title}</Title>
-        </Body> */}
+          <Title>{Actions.currentScene.replace('_','')}</Title>
+        </Body>
         <Right>
           <Button transparent>
             <Icon name='search' />
           </Button>
-          <Button transparent>
-            <Icon name='add' />
-          </Button>
-          {isAuth &&
+          {isAuth ?
             <Button transparent
-              onPress={this.logOut}>
+              onPress={this._logOut}>
               <Text>Logout</Text>
-            </Button>
+            </Button> : null
           }
         </Right>
       </Header>
@@ -61,4 +47,12 @@ class HeaderC extends React.Component {
 
 }
 
-export default withRouter(HeaderC)
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+
+const mapDispatchToProps = {
+  dispatchLogout: () => logout()
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderC)
